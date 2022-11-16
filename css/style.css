@@ -25,3 +25,12 @@ td, th{
     margin: .5em;
 }
 
+#break{
+    width: 100.8%;
+    height: 5px;
+    background-color: black;
+}
+
+div.dataTables_filter, div.dataTables_length {
+    padding: 8px;
+  }

@@ -2,7 +2,7 @@ function vratiTabelu(result) {
     let x = ``;
 
     x += `
-    <div class="d-flex justify-content-around py-2 px-4">
+    <div class="d-flex justify-content-end pt-3 pb-2 px-4">
         <button class="btn btn-success" id="btnDodajKurs">Dodaj kurs jezika</button>
     </div>`;
 
@@ -31,8 +31,8 @@ function vratiTabelu(result) {
 
     let filter = $("#filter").val();
     for (i = 0; i < result.length; i++) {
-        if(filter==undefined||filter==0||filter==result[i]['nivo_id']){
-        x += `
+        if (filter == undefined || filter == 0 || filter == result[i]['nivo_id']) {
+            x += `
             <tr>
                 <td>${result[i]['Jezik']}</td>
                 <td>${result[i]["Trajanje kursa u mesecima"]}</td>
@@ -68,6 +68,17 @@ function vratiSveKurseve() {
         success: function (result) {
             let html = vratiTabelu(result);
             $("#content").html(html);
+            $(".table").DataTable({
+                language: {
+                    url: 'global/dataTables.serbian.json'
+                },
+                columnDefs: [{
+                    targets: [4, 5], // kolone u kojima su dugmici za izmenu i brisanje (indeks krece od 0)
+                    orderable: false, // ne moze se sortirati po njima
+                }],
+                lengthMenu : [ [5, 10, 25, 50, -1], [5, 10, 25, 50, 'All']],
+                pagingType: 'simple_numbers'
+            });
         },
         error: function () {
             alert("Neuspesno ucitavanje kurseva.");
@@ -94,9 +105,9 @@ function ucitajCbNivoa() {
         success: function (result) {
             let html = vratiCbNivoa(result);
             $("#cbNivo").html(html);
-            html=`
+            html = `
             <option value="0">Svi nivoi</option>
-            `+html;
+            ` + html;
             $("#filter").html(html);
         },
         error: function () {
@@ -131,33 +142,33 @@ function ucitajCbPredavaca() {
     })
 }
 
-function validateKurs($jezik,$trajanje,xhr){
-    if($jezik==null||$jezik.trim()===''||$jezik===''){
+function validateKurs($jezik, $trajanje, xhr) {
+    if ($jezik == null || $jezik.trim() === '' || $jezik === '') {
         alert('Los unos jezika!');
         xhr.abort();
     }
-    if($trajanje==''||$trajanje<0||$trajanje>99){
+    if ($trajanje == '' || $trajanje < 0 || $trajanje > 99) {
         alert('Los unos trajanja kursa!');
         xhr.abort();
     }
 }
 
-function sacuvajKurs($jezik,$trajanje,$nivo,$predavac) {
+function sacuvajKurs($jezik, $trajanje, $nivo, $predavac) {
     $.ajax({
         url: "ajax/indexAJAX.php",
         type: "POST",
         dataType: "JSON",
         data: {
             action: "sacuvajKurs",
-            jezik:$jezik,
-            trajanje:$trajanje,
-            nivo:$nivo,
-            predavac:$predavac,
+            jezik: $jezik,
+            trajanje: $trajanje,
+            nivo: $nivo,
+            predavac: $predavac,
             flag: $flag,
             kursId: $kursId
         },
-        beforeSend: function(xhr){
-            validateKurs($jezik,$trajanje, xhr);
+        beforeSend: function (xhr) {
+            validateKurs($jezik, $trajanje, xhr);
         },
         success: function () {
             alert("Kurs je uspesno sacuvan.");
@@ -169,7 +180,7 @@ function sacuvajKurs($jezik,$trajanje,$nivo,$predavac) {
     })
 }
 
-function izbrisiKurs($kursId){
+function izbrisiKurs($kursId) {
     $.ajax({
         url: "ajax/indexAJAX.php",
         type: "POST",
@@ -197,7 +208,11 @@ $(document).ready(
         $(document).on("click", "#btnDodajKurs", function () {
             $("#flag").val(null);
             $("#kurs-id").val(null);
-            $("#mdlDodaj").modal({backdrop: 'static', keyboard: false, show: true});
+            $("#mdlDodaj").modal({
+                backdrop: 'static',
+                keyboard: false,
+                show: true
+            });
             $("#mdlDodaj").modal('show');
         })
 
@@ -205,24 +220,28 @@ $(document).ready(
             $("#mdlDodaj").modal('hide');
         })
 
-        $(document).on("click", "#btnSacuvaj", function(){
-            $jezik=$("#txtJezik").val();
-            $trajanje=$("#txtTrajanje").val();
-            $nivo=$("#cbNivo").val();
-            $predavac=$("#cbPredavac").val();
+        $(document).on("click", "#btnSacuvaj", function () {
+            $jezik = $("#txtJezik").val();
+            $trajanje = $("#txtTrajanje").val();
+            $nivo = $("#cbNivo").val();
+            $predavac = $("#cbPredavac").val();
             $flag = $("#flag").val();
             $kursId = $("#kurs-id").val();
 
-            sacuvajKurs($jezik,$trajanje,$nivo, $predavac, $flag, $kursId);
+            sacuvajKurs($jezik, $trajanje, $nivo, $predavac, $flag, $kursId);
         })
 
-        $(document).on("click", ".btnIzmeni", function(){
-            let kurs= $(this).data("kurs");
+        $(document).on("click", ".btnIzmeni", function () {
+            let kurs = $(this).data("kurs");
 
             $("#flag").val("izmeni");
             $("#kurs-id").val(kurs['id']);
 
-            $("#mdlDodaj").modal({backdrop: 'static', keyboard: false, show: true});
+            $("#mdlDodaj").modal({
+                backdrop: 'static',
+                keyboard: false,
+                show: true
+            });
             $("#mdlDodaj").modal('show');
             $("#txtJezik").val(kurs['Jezik']);
             $("#txtTrajanje").val(kurs['Trajanje kursa u mesecima']);
@@ -230,14 +249,14 @@ $(document).ready(
             $("#cbPredavac").val(kurs['predavac_id']);
         })
 
-        $(document).on("click", ".btnIzbrisi", function(){
-            let kurs= $(this).data("kurs");
+        $(document).on("click", ".btnIzbrisi", function () {
+            let kurs = $(this).data("kurs");
             $kursId = kurs['id'];
             let izbrisi = confirm("Da li sigurno zelite da izbrisete kurs?");
-            if(izbrisi){
+            if (izbrisi) {
                 izbrisiKurs($kursId);
             }
         })
-       
+
     }
 );

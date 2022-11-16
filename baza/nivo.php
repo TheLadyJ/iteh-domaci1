@@ -25,14 +25,4 @@ class Nivo
 
     }
 
-    public static function getById($id)
-    {
-        $br = Broker::getBroker();
-        $query = 
-        "   SELECT CONCAT(skraceni_naziv, ' (', pun_naziv,')') as Nivo
-            FROM Nivo;
-            WHERE id=$id";
-        return $br->sql_query($query);
-    }
-
 }

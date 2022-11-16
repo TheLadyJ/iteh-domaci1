@@ -33,32 +33,6 @@ class Kurs_jezika
         return $br->sql_query($query);
     }
 
-    public static function getById($id)
-    {   
-        $br= Broker::getBroker();
-        $query = 
-        "   SELECT jezik as `Jezik`, trajanje_meseci as `Trajanje kursa u mesecima`, Nivo.skraceni_naziv as `Nivo`, 
-            CONCAT(Predavac.ime,' ',Predavac.prezime) as `Predavac`
-            FROM Kurs_jezika
-	            JOIN Nivo ON Kurs_jezika.nivo_id=Nivo.id
-                JOIN Predavac ON Kurs_jezika.predavac_id=Predavac.id
-            WHERE Kurs_jezika.id=$id;";
-        return $br->sql_query($query);
-    }
-
-    public static function getByNivo($nivo)
-    {   
-        $br= Broker::getBroker();
-        $query = 
-        "   SELECT jezik as `Jezik`, trajanje_meseci as `Trajanje kursa u mesecima`, Nivo.skraceni_naziv as `Nivo`, 
-            CONCAT(Predavac.ime,' ',Predavac.prezime) as `Predavac`
-            FROM Kurs_jezika
-	            JOIN Nivo ON Kurs_jezika.nivo_id=Nivo.id
-                JOIN Predavac ON Kurs_jezika.predavac_id=Predavac.id
-            WHERE Nivo.skraceni_naziv=$nivo;";
-        return $br->sql_query($query);
-    }
-
     public function insert()
     {   
         $br= Broker::getBroker();
