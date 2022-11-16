@@ -32,6 +32,10 @@ class Broker{
         return $rezultat;
     }
 
+    public function sql_ins_upd_del($upit){
+        return $this->conn->query($upit);
+    }
+
 }
 
 
