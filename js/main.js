@@ -59,7 +59,7 @@ function vratiTabelu(result) {
 
 function vratiSveKurseve() {
     $.ajax({
-        url: "ajax/indexAJAX.php",
+        url: "ajax.php",
         type: "POST",
         dataType: "JSON",
         data: {
@@ -96,7 +96,7 @@ function vratiCbNivoa(result) {
 
 function ucitajCbNivoa() {
     $.ajax({
-        url: "ajax/indexAJAX.php",
+        url: "ajax.php",
         type: "POST",
         dataType: "JSON",
         data: {
@@ -126,7 +126,7 @@ function vratiCbPredavaca(result) {
 
 function ucitajCbPredavaca() {
     $.ajax({
-        url: "ajax/indexAJAX.php",
+        url: "ajax.php",
         type: "POST",
         dataType: "JSON",
         data: {
@@ -155,7 +155,7 @@ function validateKurs($jezik, $trajanje, xhr) {
 
 function sacuvajKurs($jezik, $trajanje, $nivo, $predavac) {
     $.ajax({
-        url: "ajax/indexAJAX.php",
+        url: "ajax.php",
         type: "POST",
         dataType: "JSON",
         data: {
@@ -182,7 +182,7 @@ function sacuvajKurs($jezik, $trajanje, $nivo, $predavac) {
 
 function izbrisiKurs($kursId) {
     $.ajax({
-        url: "ajax/indexAJAX.php",
+        url: "ajax.php",
         type: "POST",
         dataType: "JSON",
         data: {

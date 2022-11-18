@@ -1,8 +1,8 @@
 <?php
 
-require_once "../baza/kurs_jezika.php";
-require_once "../baza/nivo.php";
-require_once "../baza/predavac.php";
+require_once "baza/kurs_jezika.php";
+require_once "baza/nivo.php";
+require_once "baza/predavac.php";
 
 
 $action = $_POST["action"];
