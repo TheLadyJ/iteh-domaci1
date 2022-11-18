@@ -13,10 +13,12 @@
 
 }
 
-td, th{
-    text-align: center;
-    vertical-align: middle;
-}
+.dataTables_length select  {
+    background-color: white !important;
+ }
+ .dataTables_filter input  {
+    background-color: white !important; 
+ }
 
 .inputPolje{
     display: flex;

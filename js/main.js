@@ -10,16 +10,16 @@ function vratiTabelu(result) {
     x += `
     <table class="table table-light table-hover">
     <thead class="table-dark">
-        <th>
+        <th class="text-center align-middle">
             Jezik
         </th>
-        <th>
+        <th class="text-center align-middle">
             Trajanje kursa u mesecima
         </th>
-        <th>
+        <th class="text-center align-middle">
             Nivo
         </th>
-        <th>
+        <th class="text-center align-middle">
             Predavac
         </th>
         <th>
@@ -34,14 +34,14 @@ function vratiTabelu(result) {
         if (filter == undefined || filter == 0 || filter == result[i]['nivo_id']) {
             x += `
             <tr>
-                <td>${result[i]['Jezik']}</td>
-                <td>${result[i]["Trajanje kursa u mesecima"]}</td>
-                <td>${result[i]["Nivo"]}</td>
-                <td>${result[i]["Predavac"]}</td>
-                <td>
+                <td class="text-center align-middle">${result[i]['Jezik']}</td>
+                <td class="text-center align-middle">${result[i]["Trajanje kursa u mesecima"]}</td>
+                <td class="text-center align-middle">${result[i]["Nivo"]}</td>
+                <td class="text-center align-middle">${result[i]["Predavac"]}</td>
+                <td class="text-center align-middle">
                     <button class="btn btn-primary btnIzmeni" data-kurs='${JSON.stringify(result[i])}'>Izmeni</button>
                 </td>
-                <td>
+                <td class="text-center align-middle">
                     <button class="btn btn-danger btnIzbrisi" data-kurs='${JSON.stringify(result[i])}'">Izbrisi</button>
                 </td>
             </tr>`;
@@ -70,7 +70,7 @@ function vratiSveKurseve() {
             $("#content").html(html);
             $(".table").DataTable({
                 language: {
-                    url: 'global/dataTables.serbian.json'
+                    url: 'https://cdn.datatables.net/plug-ins/1.13.1/i18n/sr-SP.json'
                 },
                 columnDefs: [{
                     targets: [4, 5], // kolone u kojima su dugmici za izmenu i brisanje (indeks krece od 0)
