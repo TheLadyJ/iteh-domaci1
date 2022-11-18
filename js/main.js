@@ -76,7 +76,7 @@ function vratiSveKurseve() {
                     targets: [4, 5], // kolone u kojima su dugmici za izmenu i brisanje (indeks krece od 0)
                     orderable: false, // ne moze se sortirati po njima
                 }],
-                lengthMenu : [ [5, 10, 25, 50, -1], [5, 10, 25, 50, 'All']],
+                lengthMenu : [ [5, 10, 25, 50, -1], [5, 10, 25, 50, 'Sve']],
                 pagingType: 'simple_numbers'
             });
         },
