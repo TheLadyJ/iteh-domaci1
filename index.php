@@ -21,7 +21,7 @@
     <div id="break"></div>
 
 
-    <div id="content" class="test"></div>
+    <div id="content" class="pozadina"></div>
 
     <div class="modal fade" id="mdlDodaj" data-backdrop="static">
         <div class="modal-dialog">
